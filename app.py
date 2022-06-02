@@ -12,21 +12,30 @@ def new():
 
 @app.route('/predict', methods=['POST','GET'] )
 def predict():
-    data1=float(request.form['a'])
-    data2=float(request.form['b'])
-    data3=float(request.form['c'])
-    data4=float(request.form['d'])
-    data5=float(request.form['e'])
-    data6=float(request.form['f'])
-    data7=float(request.form['g'])
-    features=np.array([data1,data2,data3,data4,data5,data6,data7])
+    data1=int(request.form['a'])
+    data2=int(request.form['b'])
+    data3=int(request.form['c'])
+    data4=int(request.form['d'])
+    data5=int(request.form['e'])
+    data6=int(request.form['f'])
+    data7=int(request.form['g'])
+    data8=int(request.form['h'])
+    data9=int(request.form['i'])
+    data10=int(request.form['j'])
+    data11=int(request.form['k'])
+    data12=int(request.form['l'])
+    data13=int(request.form['m'])
+    data14=int(request.form['n'])
+    data15=int(request.form['o'])
+    data16=int(request.form['p'])
+    features=np.array([data1,data2,data3,data4+data5+data6+data7+data8,data9+data10,data11+data12+data13,data14+data15+data16])
     pred = model2.predict([features])
     
     def statement():
-        if pred == 0:
+        if pred == 1:
             return 'Resultado:- El modelo ha pronosticado que los síntomas descritos no ponen en riesgo su vida pero debe cuidarse.'
-        elif pred == 1:
-            return 'Resultado:-  Debe consultar con el médico, el modelo ha predicho que sus síntomas ponen en riesgo su vida.'
+        elif pred == 2:
+            return 'Resultado:- Debe consultar con el médico, el modelo ha predicho que sus síntomas ponen en riesgo su vida.'
     
     return render_template('new.html',statement=statement())
 
